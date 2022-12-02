@@ -3,17 +3,19 @@ import {Button, ListItem} from './styledComponents'
 
 const GradientDirectionItem = props => {
   const {directionDetails, activeDirection, changeDirection} = props
-  const {displayText, directionId} = directionDetails
+  const {displayText, value} = directionDetails
 
-  const isActive = activeDirection === directionId
+  const isActive = activeDirection === value
 
   const onClickingDirection = () => {
-    changeDirection(directionId)
+    changeDirection(value)
   }
 
   return (
-    <ListItem activated={isActive} onClick={onClickingDirection}>
-      <Button type="button">{displayText}</Button>
+    <ListItem onClick={onClickingDirection}>
+      <Button type="button" activated={isActive}>
+        {displayText}
+      </Button>
     </ListItem>
   )
 }

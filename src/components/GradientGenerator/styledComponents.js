@@ -4,10 +4,10 @@ import styled from 'styled-components'
 export const MainContainer = styled.div`
   min-height: 100vh;
   background-image: linear-gradient(
-   ${props => props.activeDirection}, ${props =>
-    props.firstColor}, ${props => props.secondColor}`,
-)
-    (to top, #8ae323, #014f7b);
+    to ${props => props.activeDirection},
+    ${props => props.firstColor},
+    ${props => props.secondColor}
+  );
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,11 +21,15 @@ export const Container = styled.div`
 `
 
 export const Heading = styled.h1`
-  color: black;
+  color: #ffffff;
   font-size: ${props => (props.heading ? 25 : 20)}px;
   font-weight: ${props => (props.heading ? 'bold' : 'normal')};
   font-family: 'Roboto';
   text-align: center;
+
+  @media screen and (min-width: 768px) {
+    font-size: ${props => (props.heading ? 35 : 25)}px;
+  }
 `
 export const ListContainer = styled.ul`
   padding-left: 0px;
@@ -54,9 +58,13 @@ export const ColorContainer = styled.div`
   margin: 10px;
 `
 export const LabelElement = styled.label`
-  color: black;
+  color: #ffffff;
   font-size: 15px;
   font-family: 'Roboto';
+  margin-bottom: 0px;
+  @media screen and (min-width: 768px) {
+    font-size: 18px;
+  }
 `
 
 export const ColorInput = styled.input`
@@ -65,6 +73,10 @@ export const ColorInput = styled.input`
   height: 40px;
   margin: 5px 20px;
   background-color: transparent;
+  @media screen and (min-width: 768px) {
+    width: 120px;
+    height: 50px;
+  }
 `
 
 export const Button = styled.button`
@@ -76,4 +88,9 @@ export const Button = styled.button`
   padding: 10px 20px;
   border: none;
   border-radius: 6px;
+  margin-top: 20px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 18px;
+  }
 `

@@ -25,7 +25,9 @@ class GradientGenerator extends Component {
   state = {
     firstColor: '#8ae323',
     secondColor: '#014f7b',
-    activeDirection: gradientDirectionsList[0].directionId,
+    colorOne: '#8ae323',
+    colorTwo: '#014f7b',
+    activeDirection: gradientDirectionsList[0].value,
   }
 
   changeDirection = activeDirection => {
@@ -33,30 +35,37 @@ class GradientGenerator extends Component {
   }
 
   onChangingColorOne = event => {
-    this.setState({firstColor: event.target.value})
+    this.setState({colorOne: event.target.value})
   }
 
   onChangingColorTwo = event => {
-    this.setState({secondColor: event.target.value})
+    this.setState({colorTwo: event.target.value})
   }
 
   onClickingButton = event => {
-    const {firstColor, secondColor} = this.setState
     event.preventDefault()
-    this.setState({firstColor, secondColor})
+    const {colorOne, colorTwo} = this.state
+    this.setState({firstColor: colorOne, secondColor: colorTwo})
   }
 
   render() {
-    const {firstColor, secondColor, activeDirection} = this.state
+    const {
+      firstColor,
+      secondColor,
+      activeDirection,
+      colorOne,
+      colorTwo,
+    } = this.state
     return (
       <MainContainer
+        data-testid="gradientGenerator"
         firstColor={firstColor}
         secondColor={secondColor}
         activeDirection={activeDirection}
       >
         <Container>
           <Heading heading>Generate a CSS Color Gradient</Heading>
-          <Heading>Choose Direction</Heading>
+          <Heading as="p">Choose Direction</Heading>
           <ListContainer>
             {gradientDirectionsList.map(eachDirection => (
               <GradientDirectionItem
@@ -67,24 +76,28 @@ class GradientGenerator extends Component {
               />
             ))}
           </ListContainer>
-          <Heading>Pick the Colors</Heading>
+          <Heading as="p">Pick the Colors</Heading>
           <FormContainer onSubmit={this.onClickingButton}>
             <ColorsContainer>
               <ColorContainer>
-                <LabelElement htmlFor="colorOne">{firstColor}</LabelElement>
+                <LabelElement as="p" htmlFor="colorOne">
+                  {colorOne}
+                </LabelElement>
                 <ColorInput
                   id="colorOne"
                   type="color"
-                  value={firstColor}
+                  value={colorOne}
                   onChange={this.onChangingColorOne}
                 />
               </ColorContainer>
               <ColorContainer>
-                <LabelElement htmlFor="colorTwo">{secondColor}</LabelElement>
+                <LabelElement as="p" htmlFor="colorTwo">
+                  {colorTwo}
+                </LabelElement>
                 <ColorInput
                   id="colorTwo"
                   type="color"
-                  value={secondColor}
+                  value={colorTwo}
                   onChange={this.onChangingColorTwo}
                 />
               </ColorContainer>
